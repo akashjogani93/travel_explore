@@ -1,0 +1,259 @@
+body , html {
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+/* header */
+.navbar {
+    /* margin-bottom: 20px; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2px 40px;
+}
+.navbar-brand {
+    font-weight: bold;
+    height: 50px;
+    width:50px;
+}
+
+.navbar-brand img {
+    max-height: 100%;
+    vertical-align: middle;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #000;
+}
+
+.main-nav
+{
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.main
+{
+    padding-top:40px;
+    padding-left: 7%;
+    padding-right: 7%;
+    background-color: #f0f0f0;
+}
+
+
+.eventsboxes {
+    width: 32% !important;
+    margin: 15px 5px;
+    box-shadow: rgba(255, 255, 255, 0.15) 0px 15px 25px;
+    box-shadow: rgb(11 11 11 / 15%) 2px -1px 12px;
+    padding: 20px;
+    border-radius: 0;
+    background-color: white;
+}
+
+.eventsboxes p {
+    font-size:16px;
+    font-weight: 400;
+    color: #756767;
+    margin-bottom: 0;
+}
+
+.card-img-top1{
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+}
+
+
+.footer{
+    background-color: #710F42;
+    padding:40px 40px;
+}
+
+.footer h4, .footer p, .footer h6{
+    letter-spacing: 0.8px;
+    color:white !important;
+
+}
+
+.svg-inline--fa {
+    color:white !important;
+    margin:10px !important;
+    font-size: 22px;
+}
+.contactdetails{
+    font-weight: 300;
+    letter-spacing: 0.8px;
+}
+
+.quick-links .quick-link {
+    color: white;
+    text-decoration: none;
+    /* font-weight: bold; */
+}
+.quick-links{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* contact us */
+
+.contact-form {
+    display: grid;
+    grid-gap: 20px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .contact-form button {
+    padding: 10px 20px;
+    background-color: rgb(113, 15, 66);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+
+
+  /* profile */
+
+  .profile-card {
+    width:50%;
+    background-color: #fff;
+    padding: 0px;
+    border-radius: 5px;
+    margin: 60px auto;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 0 auto;
+    justify-content:center;
+    align-items:center;
+    display:flex;
+    flex-direction: column;
+    background-color:#000;
+    overflow: hidden;
+
+  }
+
+  .profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    
+    object-fit: cover;
+  }
+  .profile-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .form-group input, .form-group select{
+    /* border:none; */
+    background-color:#f0f0f0;
+  }
+  .form-group select{
+    width:100%;
+    padding: 6px;
+  }
+  .form-group {
+    background-color:#fff;
+    padding: 6px;
+    border-radius:5px;
+    margin-top:5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  
+  .profile-info p {
+    margin-bottom: 10px;
+    color: black;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color:#fff;
+    padding: 4px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius:5px;
+    text-align:left;
+    padding-left:12px;
+  }
+  .form-group label{
+    color:#000;
+    font-weight:600;
+    margin-bottom:0px;
+  }
+  
+  .profile-info p span {
+    font-weight: bold;
+  }
+
+  
+  .edit-button {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .edit-button button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .profile-edit-card {
+    /* width:50%;
+    background-color:#fff;
+   
+    padding:0px;
+    border-radius: 5px;
+    margin: 60 auto;
+    display: none; */
+
+
+    width:50%;
+    background-color: #fff;
+    padding: 0px;
+    border-radius: 5px;
+    margin: 60px auto;
+    display: none;
+  }
+  
+  .profile-edit-card.show {
+    display: block;
+  }
+  
+  .form-group {
+    margin-bottom: 2px;
+  }
+
+
+  .table-co
+  {
+    height: 400px;
+    overflow-y: scroll !important ;
+  }
+
+  @media (max-width: 576px) {
+    .profile-card,
+    .profile-edit-card {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
