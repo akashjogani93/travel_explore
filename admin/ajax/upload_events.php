@@ -44,11 +44,16 @@ if(isset($_POST['title']))
 
 
 
-if(isset($_POST['name']))
+if(isset($_POST['busid']) && isset($_POST['pkgid']) && isset($_POST['price']) && isset($_POST['ftime']) && isset($_POST['ttime']) && isset($_POST['date']) && isset($_POST['name']))
 {
-    $name = $_POST['name'];
+    $busid = $_POST['busid'];
+    $pkgid = $_POST['pkgid'];
+    $price = $_POST['price'];
+    $ftime = $_POST['ftime'];
+    $ttime = $_POST['ttime'];
     $date = $_POST['date'];
-    $query = "INSERT INTO seat(`name`,`date`,`available`) VALUES ('$name','$date','$name')";
+    // $name = $_POST['name'];
+    $query="INSERT INTO `seat`(`date`, `available`, `busid`, `price`, `fromtime`, `totime`, `pkg`) VALUES ('$date',0,'$busid','$price','$ftime','$ttime','$pkgid')";
     if (mysqli_query($conn, $query))
     {
         echo "<span style='color:green'>New 'seat' Added successfully</span>";
@@ -63,7 +68,7 @@ if(isset($_POST['name']))
   
 if(isset($_POST['seat']))
 {
-    $query="SELECT * FROM `seat` ORDER BY `id`";
+    $query="SELECT `seat`.*,`bus`.`busname`,`bus`.`totalseat`,`packge`.`packgename` FROM `seat`,`bus`,`packge` WHERE `bus`.`id`=`seat`.`busid` AND `packge`.`id`=`seat`.`pkg` ORDER BY `seat`.`id`";
     $sn=0;
     $confirm = mysqli_query($conn, $query) or die(mysqli_error());
     while ($out = mysqli_fetch_array($confirm)) 
@@ -71,9 +76,14 @@ if(isset($_POST['seat']))
         ?>
         <tr>
             <td><?php echo ++$sn; ?></td>
-            <td><?php echo $out['name']; ?></td>
+            <td><?php echo $out['busname']; ?></td>
+            <td><?php echo $out['packgename']; ?></td>
+            <td><?php echo $out['price']; ?></td>
+            <td><?php echo $out['totalseat']; ?></td>
             <td><?php echo $out['available']; ?></td>
             <td><?php echo $out['date']; ?></td>
+            <td><?php echo $out['fromtime']; ?></td>
+            <td><?php echo $out['totime']; ?></td>
         </tr>
         <?php   
     }

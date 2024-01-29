@@ -2,7 +2,14 @@
 
 if(isset($_POST['Submit']))
 {
-    $query="SELECT * FROM `places` ORDER BY `id`";
+    $opt=$_POST['opt'];
+    if($opt=='All')
+    {
+        $query="SELECT * FROM `places` ORDER BY `id`";
+    }else
+    {
+        $query="SELECT * FROM `places` WHERE `pkid`='$opt' ORDER BY `id`";
+    }
     $sn=0;
     $confirm = mysqli_query($conn, $query) or die(mysqli_error());
     while ($out = mysqli_fetch_array($confirm))

@@ -1,4 +1,6 @@
-<?php include('header.php');?>
+<?php include('header.php');
+include('connect.php')
+?>
 <style>
   #home{
     color:rgb(113, 15, 66);
@@ -31,6 +33,26 @@
             <center><h3 class="text-center" style="color:black;">OUR LATEST PLACES</h3>
                 <button class="btn btn-info" id="booking">Book A Trip</button>
             </center>
+        </div>
+    </div>
+    <div class="row main">
+        <div class="col-lg-12">
+            <label for="">Package</label>
+            <select name="pkgname" id="pkgname" class="form-control" onchange="packagenamechange()">
+                <option value="All">All</option>
+                <?php 
+                  $query="SELECT * FROM `packge`";
+                  $confirm = mysqli_query($conn, $query) or die(mysqli_error());
+                  while ($out = mysqli_fetch_array($confirm)) 
+                  {
+                    $id=$out['id'];
+                    $pkgname=$out['packgename'];
+                    ?>
+                      <option value="<?php echo $id; ?>"><?php echo $pkgname; ?></option>
+                    <?php
+                  } 
+                ?>
+            </select>
         </div>
     </div>
     <div class="row main" id="eventRow">
@@ -93,11 +115,11 @@
         let log=$.ajax({
           url: 'api/load_events.php',
           type: "POST",
-          data:{Submit:"submit"},
+          data:{Submit:"submit",opt:'All'},
           cache:false,
           success:function(data)
           {
-            console.log(data);
+            // console.log(data);
               $('#eventRow').html(data);
           }
         });
@@ -189,11 +211,24 @@
                     }
                 }
             });
-            console.log(ajax);
         });
     });
 
-
+    function packagenamechange()
+    {
+        var opt=$('#pkgname').val();
+        let log=$.ajax({
+          url: 'api/load_events.php',
+          type: "POST",
+          data:{Submit:"submit",opt:opt},
+          cache:false,
+          success:function(data)
+          {
+            $('#eventRow').empty();
+            $('#eventRow').html(data);
+          }
+        });
+    }
     function dateChageAvail()
     {
         var date=$('#date').val();

@@ -39,9 +39,57 @@ include('../connect.php')
           <h4>Add Seat Details</h4><hr />
           <!-- <form> -->
             <div class="form-group">
+              <label for="name">Select Bus:</label>
+              <select name="busid" id="busid" class="form-control">
+                <option value="">Select Bus</option>
+                <?php 
+                  $query="SELECT * FROM `bus`";
+                  $confirm = mysqli_query($conn, $query) or die(mysqli_error());
+                  while ($out = mysqli_fetch_array($confirm)) 
+                  {
+                    $id=$out['id'];
+                    $busname=$out['busname'];
+                    ?>
+                      <option value="<?php echo $id; ?>"><?php echo $busname; ?></option>
+                    <?php
+                  } 
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Select Package:</label>
+              <select name="pkg" id="pkg" class="form-control">
+                <option value="">Select Package</option>
+                <?php 
+                  $query="SELECT * FROM `packge`";
+                  $confirm = mysqli_query($conn, $query) or die(mysqli_error());
+                  while ($out = mysqli_fetch_array($confirm)) 
+                  {
+                    $id=$out['id'];
+                    $pkgname=$out['packgename'];
+                    ?>
+                      <option value="<?php echo $id; ?>"><?php echo $pkgname; ?></option>
+                    <?php
+                  } 
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Price:</label>
+              <input type="text" id="price" name="price" class="form-control" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="name">From Time:</label>
+              <input type="time" id="ftime" name="ftime" class="form-control" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="name">To Time:</label>
+              <input type="time" id="ttime" name="ttime" class="form-control" autocomplete="off">
+            </div>
+            <!-- <div class="form-group">
               <label for="name">Seats:</label>
               <input type="text" id="name" name="name" class="form-control" autocomplete="off">
-            </div>
+            </div> -->
             <div class="form-group">
               <label for="phone">Date:</label>
               <input type="date" id="date" name="date" class="form-control" autocomplete="off">
@@ -62,10 +110,15 @@ include('../connect.php')
           <table class="table table-bordered table-striped bg-white" id="example">
             <thead>
               <tr>
-                <th>Action</th>
-                <th>Seats</th>
-                <th>Abailable</th>
+                <th>Slno</th>
+                <th>Bus</th>
+                <th>Package</th>
+                <th>Price</th>
+                <th>Seat</th>
+                <th>Availabe</th>
                 <th>Date</th>
+                <th>From</th>
+                <th>To</th>
               </tr>
             </thead>
             <tbody class="mytable">
@@ -98,20 +151,26 @@ include('../connect.php')
           }); 
       }
 
-      $('#name').keypress(function(event){
+      $('#price').keypress(function(event){
         var keycode = (event.keyCode ? event.keyCode : event.which);
             if ((keycode < 48 || keycode > 57))
             return false;
 
             return true;
         });
-      
+
       $('#community').click(function()
       {
-        var name = $('#name').val();
+
+        var busid=$('#busid').val();
+        var pkg=$('#pkg').val();
+        var price=$('#price').val();
+        var ftime=$('#ftime').val();
+        var ttime=$('#ttime').val();
+        // var name = $('#name').val();
         var date = $('#date').val();
 
-          var inputIds = ['#name','#date'];
+          var inputIds = ['#busid, #pkg, #price, #ftime, #ttime, #date'];
         for (var i = 0; i < inputIds.length; i++) 
         {
             var inputValue = $(inputIds[i]).val();
@@ -125,7 +184,11 @@ include('../connect.php')
         }
         
         var form_data = new FormData();
-        form_data.append('name', name);
+        form_data.append('busid', busid);
+        form_data.append('pkgid', pkg);
+        form_data.append('price', price);
+        form_data.append('ftime', ftime);
+        form_data.append('ttime', ttime);
         form_data.append('date', date);
         let log=$.ajax({
             url:"ajax/upload_events.php",

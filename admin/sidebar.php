@@ -48,6 +48,12 @@ include('link.php');
             </a>
           </li>
           <li class="sidebar">
+            <a href="addbus.php">
+              <i class="fas fa-id-card"></i>
+              <span>Create Bus</span>
+            </a>
+          </li>
+          <li class="sidebar">
             <a href="addevents.php">
               <i class="fas fa-id-card"></i>
               <span>Places</span>

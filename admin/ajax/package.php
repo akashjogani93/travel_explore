@@ -23,7 +23,7 @@ if(isset($_POST['Submit']))
 if(isset($_POST['title']))
 {
     $title = $_POST['title'];
-    $location = $_POST['location'];
+    // $location = $_POST['location'];
     $des = $_POST['des'];
     // $file = $_FILES['file'];
     // $bond1 = upload_Profile($file,"../../image/");
